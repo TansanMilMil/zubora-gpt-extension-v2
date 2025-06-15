@@ -41,7 +41,7 @@ async function processWithOpenAI(query: string, tabId: number) {
         const msg = error instanceof Error ? error.message : String(error);
         chrome.tabs.sendMessage(tabId, {
           action: "showError",
-          error: "APIの呼び出しに失敗しました: " + msg,
+          error: msg,
         });
       } finally {
         chrome.tabs.sendMessage(tabId, { action: "hideLoading" });
@@ -52,7 +52,7 @@ async function processWithOpenAI(query: string, tabId: number) {
     const msg = error instanceof Error ? error.message : String(error);
     chrome.tabs.sendMessage(tabId, {
       action: "showError",
-      error: "APIの呼び出しに失敗しました: " + msg,
+      error: msg,
     });
   }
 }

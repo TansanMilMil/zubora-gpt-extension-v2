@@ -92,8 +92,34 @@ function initPromptInput() {
     const promptInput = document.getElementById(
       "prompt"
     ) as HTMLTextAreaElement | null;
-    if (promptInput) promptInput.value = data.prompt;
+    if (promptInput) {
+      promptInput.value = data.prompt;
+      updateCharCount(promptInput.value);
+
+      // 文字数更新のイベントリスナーを追加
+      promptInput.addEventListener("input", (e) => {
+        const target = e.target as HTMLTextAreaElement;
+        updateCharCount(target.value);
+      });
+    }
   });
+}
+
+function updateCharCount(text: string) {
+  const charCountElement = document.getElementById("prompt-char-count");
+  if (charCountElement) {
+    const count = text.length;
+    const maxCount = 1000;
+    const remaining = maxCount - count;
+    charCountElement.textContent = `${count}文字 / ${maxCount}文字 (残り${remaining}文字)`;
+
+    // 文字数が制限を超えたら赤色で表示
+    if (count > maxCount) {
+      charCountElement.style.color = "#e74c3c";
+    } else {
+      charCountElement.style.color = "#666";
+    }
+  }
 }
 
 function initApiKeyInput() {

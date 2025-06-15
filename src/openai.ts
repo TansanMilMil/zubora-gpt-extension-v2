@@ -2,6 +2,10 @@ export async function callOpenAI(
   prompt: string,
   apiKey: string
 ): Promise<string> {
+  if (prompt.length > 1000) {
+    throw new Error("プロンプトは1000文字以内にしてください");
+  }
+
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
