@@ -63,83 +63,24 @@ export function showResultPopup(result: string) {
     existingPopup.remove();
   }
 
-  // アニメーション用styleを追加（なければ）
-  if (!document.getElementById("zubora-gpt-popup-anim-style")) {
-    const style = document.createElement("style");
-    style.id = "zubora-gpt-popup-anim-style";
-    style.textContent = `
-      @keyframes zubora-gpt-popup-in {
-        0% { opacity: 0; transform: scale(0.96) translate(-50%, -50%); }
-        100% { opacity: 1; transform: scale(1) translate(-50%, -50%); }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
   // ポップアップの作成
   const popup = document.createElement("div");
   popup.id = "zubora-gpt-popup";
-  popup.style.cssText = `
-    position: fixed;
-    right: 8px;
-    bottom: 8px;
-    background: #fff;
-    padding: 20px 12px 12px 20px;
-    border-radius: 12px;
-    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.22), 0 1.5px 8px 0 rgba(0,0,0,0.10);
-    z-index: 10000;
-    width: 420px;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', 'Meiryo', 'sans-serif';
-    color: #222;
-    line-height: 1.7;
-    font-size: 16px;
-    letter-spacing: 0.01em;
-    display: flex;
-    flex-direction: column;
-    gap: 0.2em;
-    border: none;
-    opacity: 0;
-    animation: zubora-gpt-popup-in 0.18s cubic-bezier(.4,1.4,.6,1) forwards;
-  `;
+  popup.className = "zubora-gpt-popup";
 
   // タイトル
   const titleDiv = document.createElement("div");
   titleDiv.id = "zubora-gpt-title";
+  titleDiv.className = "zubora-gpt-title";
   titleDiv.textContent = "AI回答";
-  titleDiv.style.cssText = `
-    font-size: 14px;
-    font-weight: normal;
-    margin-bottom: 6px;
-    color: #888;
-    letter-spacing: 0.01em;
-    text-align: left;
-    padding-right: 32px;
-  `;
   popup.appendChild(titleDiv);
 
   // バツボタン
   const closeBtn = document.createElement("button");
   closeBtn.innerHTML = "&#10005;"; // ×
   closeBtn.title = "閉じる";
-  closeBtn.style.cssText = `
-    position: absolute;
-    top: 10px;
-    right: 14px;
-    background: transparent;
-    border: none;
-    color: #888;
-    font-size: 22px;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 0;
-    line-height: 1;
-    transition: color 0.2s;
-    z-index: 10001;
-    border-radius: 50%;
-  `;
-  closeBtn.onmouseover = () => (closeBtn.style.color = "#007bff");
-  closeBtn.onmouseout = () => (closeBtn.style.color = "#888");
+  closeBtn.id = "zubora-gpt-close";
+  closeBtn.className = "zubora-gpt-close";
   closeBtn.onclick = (e) => {
     e.stopPropagation();
     popup.remove();
@@ -149,14 +90,7 @@ export function showResultPopup(result: string) {
   // 結果テキストの表示
   const resultText = document.createElement("div");
   resultText.id = "zubora-gpt-result";
-  resultText.style.cssText = `
-    margin-bottom: 4px;
-    color: #222;
-    font-size: 14px;
-    word-break: break-word;
-    white-space: pre-wrap;
-    min-height: 32px;
-  `;
+  resultText.className = "zubora-gpt-result";
   resultText.textContent = result;
   popup.appendChild(resultText);
 

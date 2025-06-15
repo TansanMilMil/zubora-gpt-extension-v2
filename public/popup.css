@@ -1,0 +1,76 @@
+.zubora-gpt-popup {
+  position: fixed;
+  right: 8px;
+  bottom: 8px;
+  background: #fff;
+  padding: 20px 12px 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.22), 0 1.5px 8px 0 rgba(0, 0, 0, 0.1);
+  z-index: 10000;
+  max-width: 420px;
+  min-width: 260px;
+  width: 420px;
+  box-sizing: border-box;
+  font-family: "Segoe UI", "Meiryo", "sans-serif";
+  color: #222;
+  line-height: 1.7;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  border: none;
+  opacity: 0;
+  animation: zubora-gpt-popup-slideup 0.22s cubic-bezier(0.4, 1.4, 0.6, 1)
+    forwards;
+}
+
+@keyframes zubora-gpt-popup-slideup {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.zubora-gpt-title {
+  font-size: 14px;
+  font-weight: normal;
+  margin-bottom: 6px;
+  color: #888;
+  letter-spacing: 0.01em;
+  text-align: left;
+  padding-right: 32px;
+}
+
+.zubora-gpt-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s;
+  z-index: 10001;
+  border-radius: 50%;
+}
+.zubora-gpt-close:hover {
+  color: #007bff;
+}
+
+.zubora-gpt-result {
+  margin-bottom: 4px;
+  color: #222;
+  font-size: 14px;
+  word-break: break-word;
+  white-space: pre-wrap;
+  min-height: 32px;
+}
