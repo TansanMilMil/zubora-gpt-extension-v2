@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "ずぼらGPT V2",
+  "version": "1.0.0",
+  "description": "右クリックで選択テキストをAIサービスに送信します。",
+  "icons": {
+    "16": "icons/icon.png",
+    "48": "icons/icon.png",
+    "128": "icons/icon.png"
+  },
+  "permissions": ["contextMenus", "storage", "scripting", "tabs"],
+  "host_permissions": [
+    "https://chat.openai.com/*",
+    "https://chatgpt.com/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/icon.png",
+      "48": "icons/icon.png",
+      "128": "icons/icon.png"
+    }
+  },
+  "options_page": "options.html",
+  "commands": {
+    "run-chatgpt": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+A"
+      },
+      "description": "選択テキストをAIサービスに送信"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
