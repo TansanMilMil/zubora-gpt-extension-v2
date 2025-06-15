@@ -1,59 +1,59 @@
 # 注意
 
-> このドキュメントは"ずぼら"な開発者が Cursor（AI ペアプロ）で自動生成したものです。内容を 100%信じて地雷を踏んでも責任は取らんぞ！
-> ついでに、このプログラム自体もほぼ Cursor で"vive coding"した、いわゆる AI 産のずぼらコードだ。人力成分は限りなく薄いぞ。
+> このドキュメントは AI ペアプロで自動生成。信じすぎて地雷を踏んでも知らないよ。
 
-# ずぼら GPT（Vite+TypeScript 版）
+# ずぼら GPT V2
 
-> "ずぼら"なあなたのための、AI サービス汎用 Chrome 拡張
+「めんどくさい」を極めた Chrome 拡張。選択テキストを右クリックだけで ChatGPT に投げられる。コピペ？そんなの前時代の遺物だよ。
 
----
+## 機能
 
-## これは何？
+- テキストを選択して右クリック →ChatGPT に送信
+- 結果はポップアップで表示
+- OpenAI API キーは設定画面で管理
 
-ChatGPT 専用だった拡張を「どんな AI サービスでも右クリックで投げられる」ようにした、
-しかも Vite+TypeScript で"モダン"を気取った Chrome 拡張だよ。
+## インストール方法
 
-crxjs？そんな地獄の依存はもう使ってないから安心しろ。
-
----
-
-## セットアップ
-
-1. 依存パッケージをインストール
-   ```sh
+1. このリポジトリをクローン（面倒ならやらなくてもいいよ）
+2. パッケージをインストール
+   ```bash
    npm install
    ```
-2. public/に manifest.json, options.html, icons/を置く
-   - 直下や src/に置いても Vite は無視するからな！
 3. ビルド
-   ```sh
+   ```bash
    npm run build
    ```
-   - dist/に content.js, background.js, options.js, manifest.json, options.html, icons/が全部揃う
-
----
+4. Chrome の拡張機能管理（chrome://extensions/）で「パッケージ化されていない拡張機能を読み込む」から`dist`を選択
 
 ## 使い方
 
-1. Chrome の拡張機能管理画面で「パッケージ化されていない拡張機能を読み込む」から dist/を選択
-2. 右クリックで「AI にサクッと質問」メニューが出る
-3. オプションページで AI サービスを追加・切り替えできる
-4. 選択テキストを AI サービスに投げて"ずぼら"に生きろ
+1. 設定画面で OpenAI API キーを入力（忘れたら動かないよ）
+2. テキストを選択して右クリック
+3. 結果がポップアップで出る（見逃しても知らん）
+
+## 開発
+
+- Node.js と npm が必要（なければ諦めて）
+
+### セットアップ
+
+```bash
+git clone https://github.com/yourusername/zubora-gpt-extension-v2.git
+cd zubora-gpt-extension-v2
+npm install
+npm run dev
+```
+
+### ビルド
+
+```bash
+npm run build
+```
+
+## ライセンス
+
+MIT。好きにして。
 
 ---
 
-## "ずぼら"な注意点
-
-- manifest.json や options.html は**必ず public/**に置け。dist に入らないぞ
-- manifest.json の js 参照は**content.js, background.js, options.js**みたいに dist のファイル名に合わせろ
-- crxjs の呪いからは解放されたが、Vite の public 運用ルールは守れ
-- content script は manifest で指定してるから、background から二重注入するな
-- 何か動かない？だいたいパスかビルドかキャッシュだ
-
----
-
-## 皮肉な一言
-
-"ずぼら"なやつほど、地雷を踏み抜いて強くなる。
-この README を読んでる時点で、もう君も立派な"ずぼら"だよ。
+README をここまで読んだあなた、もう「ずぼら」じゃないかもね。
