@@ -11,38 +11,59 @@ import {
   hideLoadingSpinner,
 } from "./popup.js";
 import { showToast } from "./toast.js";
+import { Message } from "./types.js";
 
+// アニメーション用CSSの注入
+const injectAnimationStyle = (): void => {
+  if (!document.getElementById("zubora-gpt-msg-anim")) {
+    const style = document.createElement("style");
+    style.id = "zubora-gpt-msg-anim";
+    style.textContent = `
+      @keyframes zubora-gpt-msg-slideup {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+};
+
+// メッセージハンドラ
+const handleMessage = async (message: Message): Promise<void> => {
+  switch (message.action) {
+    case ACTION_INPUT_TO_CHATGPT:
+      if (message.text) {
+        await navigator.clipboard.writeText(message.text);
+        injectAnimationStyle();
+        showToast("コピーしました");
+      }
+      break;
+    case "showResult":
+      if (message.result && message.prompt) {
+        showResultPopup(message.result, message.prompt);
+      }
+      break;
+    case "showError":
+      if (message.error) {
+        showToast(message.error);
+      }
+      break;
+    case "showLoading":
+      showLoadingSpinner();
+      break;
+    case "hideLoading":
+      hideLoadingSpinner();
+      break;
+  }
+};
+
+// 初期化
 console.log("content script loaded");
 // import { ACTION_INPUT_TO_CHATGPT, TEXTAREA_SELECTOR, INTERVAL_MS, INPUT_EVENT_NAME, ENTER_KEY_NAME } from "./constants.js";
 
 chrome.runtime.sendMessage({ action: "contentScriptReady" });
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === ACTION_INPUT_TO_CHATGPT) {
-    const inputText = message.text;
-    // クリップボードにコピー
-    navigator.clipboard.writeText(inputText).then(() => {
-      // アニメーション用CSSを1度だけ注入
-      if (!document.getElementById("zubora-gpt-msg-anim")) {
-        const style = document.createElement("style");
-        style.id = "zubora-gpt-msg-anim";
-        style.textContent = `
-          @keyframes zubora-gpt-msg-slideup {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-          }
-        `;
-        document.head.appendChild(style);
-      }
-      showToast("コピーしました");
-    });
-  } else if (message.action === "showResult") {
-    showResultPopup(message.result, message.prompt);
-  } else if (message.action === "showError") {
-    showToast(message.error);
-  } else if (message.action === "showLoading") {
-    showLoadingSpinner();
-  } else if (message.action === "hideLoading") {
-    hideLoadingSpinner();
-  }
+// メッセージリスナーの設定
+chrome.runtime.onMessage.addListener((message: Message) => {
+  handleMessage(message);
 });
