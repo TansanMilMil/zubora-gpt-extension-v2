@@ -1,0 +1,27 @@
+.zubora-gpt-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  transition: all 0.3s cubic-bezier(0.23, 1.1, 0.32, 1);
+  white-space: nowrap;
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.zubora-gpt-toast.error {
+  background: #dc3545;
+}
+
+.zubora-gpt-toast.success {
+  background: #28a745;
+}

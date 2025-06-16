@@ -24,7 +24,11 @@
     // JSONモジュールのインポートを許可
     "resolveJsonModule": true,
     // 型定義の追加
-    "types": ["chrome"]
+    "types": ["chrome"],
+    // JSXの設定
+    "jsx": "react-jsx",
+    // Reactの型定義を追加
+    "lib": ["DOM", "DOM.Iterable", "ESNext"]
   },
   // コンパイル対象
   "include": ["src/**/*"],

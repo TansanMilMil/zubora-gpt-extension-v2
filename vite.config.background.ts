@@ -4,7 +4,7 @@ export default defineConfig({
     outDir: "dist",
     emptyOutDir: false,
     rollupOptions: {
-      input: "src/background.ts",
+      input: "src/scripts/background.ts",
       output: {
         entryFileNames: "background.js",
         format: "iife",

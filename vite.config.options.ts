@@ -4,7 +4,7 @@ export default defineConfig({
     outDir: "dist",
     emptyOutDir: false,
     rollupOptions: {
-      input: "src/options.ts",
+      input: "src/scripts/options.ts",
       output: {
         entryFileNames: "options.js",
         format: "iife",

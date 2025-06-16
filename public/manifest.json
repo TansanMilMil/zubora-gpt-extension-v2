@@ -38,7 +38,7 @@
     {
       "matches": ["<all_urls>"],
       "js": ["content.js"],
-      "css": ["popup.css"]
+      "css": ["popup.css", "animations.css"]
     }
   ]
 }
