@@ -6,36 +6,7 @@
     <link rel="stylesheet" href="options.css" />
   </head>
   <body>
-    <div class="main-content">
-      <h1>ずぼらGPT V2</h1>
-      <p>
-        ショートカットキーは<a
-          href="vivaldi://extensions/shortcuts"
-          target="_blank"
-          >こちら</a
-        >で設定できます。<br />
-      </p>
-      <div class="settings-section">
-        <h2>OpenAI API設定</h2>
-        <label for="openai-api-key">OpenAI APIキー:</label><br />
-        <input
-          type="password"
-          id="openai-api-key"
-          class="api-key-input"
-        /><br />
-        <button id="save-api-key">APIキーを保存</button>
-      </div>
-      <hr />
-      <div class="settings-section">
-        <h2>プロンプト設定</h2>
-        <label>プロンプト（選択テキストの前に付与されます）:</label><br />
-        <textarea id="prompt" class="prompt-textarea"></textarea>
-        <div id="prompt-char-count" class="char-count"></div>
-        <button id="save">保存</button>
-      </div>
-      <p id="ai-status"></p>
-      <p id="status"></p>
-    </div>
+    <div id="root"></div>
     <script src="options.js" type="module"></script>
   </body>
 </html>

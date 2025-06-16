@@ -6,6 +6,8 @@ import {
 } from "../components/LoadingSpinner";
 import { showToast } from "../components/Toast";
 import { Message } from "../types";
+import "../styles/popup.css";
+import "../styles/animations.css";
 
 // メッセージハンドラ
 const handleMessage = async (message: Message): Promise<void> => {

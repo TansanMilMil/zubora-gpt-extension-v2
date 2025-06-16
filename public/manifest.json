@@ -37,8 +37,7 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "css": ["popup.css", "animations.css"]
+      "js": ["content.js"]
     }
   ]
 }
