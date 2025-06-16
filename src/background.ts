@@ -36,6 +36,7 @@ async function processWithOpenAI(query: string, tabId: number) {
         chrome.tabs.sendMessage(tabId, {
           action: "showResult",
           result: result,
+          prompt: query,
         });
       } catch (error) {
         const msg = error instanceof Error ? error.message : String(error);

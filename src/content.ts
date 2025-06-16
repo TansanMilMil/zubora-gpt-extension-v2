@@ -27,31 +27,18 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         const style = document.createElement("style");
         style.id = "zubora-gpt-msg-anim";
         style.textContent = `
-          @keyframes zuboraFadeSlideIn {
-            0% { opacity: 0; transform: translateY(40px) scale(0.95); background: #ffd700; color: #222; }
-            40% { opacity: 1; background: #ffe066; color: #222; }
-            60% { opacity: 1; transform: translateY(-8px) scale(1.03); background: #4f8cff; color: #fff; }
-            80% { opacity: 1; transform: translateY(0) scale(1); background: #222; color: #fff; }
-            100% { opacity: 1; transform: translateY(0) scale(1); background: #222; color: #fff; }
-          }
-          .zubora-gpt-anim {
-            animation: zuboraFadeSlideIn 0.9s cubic-bezier(.23,1.1,.32,1) both;
+          @keyframes zubora-gpt-msg-slideup {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
           }
         `;
         document.head.appendChild(style);
       }
-      // 画面右下にメッセージを表示
-      showToast(
-        message.messageText ||
-          "クリップボードにコピーしました。ChatGPTの入力欄にペーストして送信してください",
-        4000
-      );
+      showToast("コピーしました");
     });
   } else if (message.action === "showResult") {
-    hideLoadingSpinner();
-    showResultPopup(message.result);
+    showResultPopup(message.result, message.prompt);
   } else if (message.action === "showError") {
-    hideLoadingSpinner();
     showToast(message.error);
   } else if (message.action === "showLoading") {
     showLoadingSpinner();

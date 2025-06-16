@@ -74,3 +74,14 @@
   white-space: pre-wrap;
   min-height: 32px;
 }
+
+.zubora-gpt-prompt {
+  margin: 8px 0;
+  padding: 8px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  color: #666;
+  font-size: 13px;
+  word-break: break-word;
+  white-space: pre-wrap;
+}

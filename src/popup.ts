@@ -56,7 +56,7 @@ function unlockBodyScroll() {
   }
 }
 
-export function showResultPopup(result: string) {
+export function showResultPopup(result: string, prompt?: string) {
   // 既存のポップアップがあれば削除
   const existingPopup = document.getElementById("zubora-gpt-popup");
   if (existingPopup) {
@@ -86,6 +86,14 @@ export function showResultPopup(result: string) {
     popup.remove();
   };
   popup.appendChild(closeBtn);
+
+  // プロンプトを表示
+  if (prompt) {
+    const promptDiv = document.createElement("div");
+    promptDiv.className = "zubora-gpt-prompt";
+    promptDiv.textContent = prompt;
+    popup.appendChild(promptDiv);
+  }
 
   // 結果テキストの表示
   const resultText = document.createElement("div");
