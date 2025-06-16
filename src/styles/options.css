@@ -107,11 +107,40 @@ hr {
 .settings-section {
   margin-bottom: 20px;
 }
+.api-key-container {
+  position: relative;
+  display: inline-block;
+  width: 320px;
+}
 .api-key-input {
-  width: 90%;
-  padding: 8px;
-  margin-bottom: 10px;
-  font-size: 1em;
+  padding-right: 36px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.toggle-visibility {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 18px;
+  color: #888;
+  z-index: 2;
+  height: 24px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.toggle-visibility:focus {
+  outline: none;
+}
+.toggle-visibility:hover {
+  color: #222;
+  opacity: 1;
 }
 .prompt-textarea {
   width: 90%;

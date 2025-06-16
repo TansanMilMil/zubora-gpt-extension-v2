@@ -1,3 +1,4 @@
+import "../../styles/options.css";
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { STORAGE_KEYS } from "../constants/storage";
@@ -6,6 +7,7 @@ import { showToast } from "./Toast";
 const Options: React.FC = () => {
   const [apiKey, setApiKey] = useState<string>("");
   const [prompt, setPrompt] = useState<string>("");
+  const [showApiKey, setShowApiKey] = useState<boolean>(false);
 
   useEffect(() => {
     // APIキーの読み込み
@@ -80,13 +82,22 @@ const Options: React.FC = () => {
         <h2>OpenAI API設定</h2>
         <label htmlFor="openai-api-key">OpenAI APIキー:</label>
         <br />
-        <input
-          type="password"
-          id="openai-api-key"
-          className="api-key-input"
-          value={apiKey}
-          onChange={(e) => setApiKey(e.target.value)}
-        />
+        <div className="api-key-container">
+          <input
+            type={showApiKey ? "text" : "password"}
+            id="openai-api-key"
+            className="api-key-input"
+            value={apiKey}
+            onChange={(e) => setApiKey(e.target.value)}
+          />
+          <button
+            type="button"
+            className="toggle-visibility"
+            onClick={() => setShowApiKey(!showApiKey)}
+          >
+            {showApiKey ? "🔒" : "👁️"}
+          </button>
+        </div>
         <br />
         <button onClick={handleSaveApiKey}>APIキーを保存</button>
       </div>

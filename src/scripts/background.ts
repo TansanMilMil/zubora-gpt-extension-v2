@@ -1,5 +1,4 @@
 import { callOpenAI } from "../services/openai";
-import { Message } from "../types";
 import { CHATGPT_INTERACTION_ACTIONS, CONTEXT_MENU_ID } from "../constants";
 
 // コンテキストメニューの作成
