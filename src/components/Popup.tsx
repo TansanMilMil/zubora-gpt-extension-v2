@@ -22,12 +22,14 @@ const Popup: React.FC<PopupProps> = ({ result, prompt, onClose }) => {
 
   return (
     <div className="zubora-gpt-popup">
-      <div className="zubora-gpt-title">AI回答</div>
-      <button className="zubora-gpt-close" onClick={onClose} title="閉じる">
-        &#10005;
-      </button>
-      {prompt && <div className="zubora-gpt-prompt">{prompt}</div>}
-      <div className="zubora-gpt-result">{result}</div>
+      <div className="zubora-gpt-body">
+        <div className="zubora-gpt-title">AI回答</div>
+        <button className="zubora-gpt-close" onClick={onClose} title="閉じる">
+          &#10005;
+        </button>
+        <div className="zubora-gpt-result">{result}</div>
+        {prompt && <div className="zubora-gpt-prompt">{prompt}</div>}
+      </div>
     </div>
   );
 };
